@@ -2,10 +2,12 @@ package app
 
 import (
 	"encoding/json"
-	"github.com/ashishjuyal/banking-auth/dto"
-	"github.com/ashishjuyal/banking-auth/service"
-	"github.com/ashishjuyal/banking-lib/logger"
 	"net/http"
+
+	"github.com/ashishjuyal/banking-lib/logger"
+
+	"github.com/slns/banking-auth/dto"
+	"github.com/slns/banking-auth/service"
 )
 
 type AuthHandler struct {
@@ -13,7 +15,27 @@ type AuthHandler struct {
 }
 
 func (h AuthHandler) NotImplementedHandler(w http.ResponseWriter, r *http.Request) {
-	writeResponse(w, http.StatusOK, "Handler not implemented...")
+	// // writeResponse(w, http.StatusOK, "Handler not implemented...")
+	// var registerRequest dto.LoginRequest
+	// if err := json.NewDecoder(r.Body).Decode(&registerRequest); err != nil {
+	// 	logger.Error("Error while decoding login request: " + err.Error())
+	// 	w.WriteHeader(http.StatusBadRequest)
+	// 	return
+	// } else {
+	// 	// Salt and hash the password using the bcrypt algorithm
+	// 	// The second argument is the cost of hashing, which we arbitrarily set as 8 
+	// 	// (this value can be more or less, depending on the computing power you wish to utilize)
+	// 	hashedPassword, appErr := bcrypt.GenerateFromPassword([]byte(registerRequest.Password), 8)
+		
+	// 	//_, appErr := h.service.Login(registerRequest)
+	// 	if _, err = db.Query("insert into users values ($1, $2)", registerRequest.Username, string(hashedPassword)); appErr != nil {
+	// 		// If there is any issue with inserting into the database, return a 500 error
+	// 		w.WriteHeader(http.StatusInternalServerError)
+	// 		return
+	// 	} else {
+	// 		writeResponse(w, http.StatusOK, registerRequest)
+	// 	}
+	// }
 }
 
 func (h AuthHandler) Login(w http.ResponseWriter, r *http.Request) {
